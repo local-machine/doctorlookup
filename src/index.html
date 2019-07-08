@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project Name</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <title>Doctor Lookup</title>
   </head>
   <body>
-
+    <div class="container">
+      <h1>Find a doctor near you!</h1>
+      <label for="location">Enter a location:</label>
+      <input id="location" type="text">
+      <button class="btn-success" id="doctorList">Find Local Doctors!</button>
+      <div class="errors"></div>
+      <div class="showName"></div>
+      <div class="showAddress"></div>
+      <!-- <div class="showWebsite"></div> -->
+      <div class="showAcceptingNewPatients"></div>
+    </div>
   </body>
 </html>
