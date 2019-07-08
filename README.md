@@ -24,7 +24,7 @@ On this web site, the user can search for a doctor in the area.
 * In Terminal, enter the command: npm install
 * In Terminal, enter the command: npm run build
 * Generate a new API key here [Web page](https://developer.betterdoctor.com/)
-* Create .env file in the root directory of the project and input "process.env." following your unique API_Key.
+* Create .env file in the root directory of the project. Input "exports.apiKey = " and enter your unique API_Key.
 
 ## Known Bugs
 * No known bugs at this time.
