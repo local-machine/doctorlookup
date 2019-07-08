@@ -3,6 +3,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Constructor-Name } from './backend-code';
+var apiKey = require('./../.env').exports.apiKey;
 
 $(function() {
   $('#doctorList').click(function() {
