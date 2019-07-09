@@ -2,20 +2,67 @@
 <html>
   <head>
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="main.js"></script>
-    <title>Doctor Lookup</title>
+    <!-- <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css"> -->
+    <script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
+    <title>Doctor Information</title>
   </head>
   <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html"></a>
+        </div>
+      </div>
+    </nav>
+
     <div class="container">
-      <h1>Find a doctor near you!</h1>
-      <label for="location">Enter a location:</label>
-      <input id="location" type="text">
-      <button class="btn-success" id="doctorList">Find Local Doctors!</button>
-      <div class="errors"></div>
-      <div class="showName"></div>
-      <div class="showAddress"></div>
-      <!-- <div class="showWebsite"></div> -->
-      <div class="showAcceptingNewPatients"></div>
+      <div class="jumbotron">
+        <h3 class="text-center">Doctors By Name</h3>
+        <form id="searchNameForm">
+          <input type="text" class="form-control" id="searchNameInput" placeholder="Enter a doctor name">
+        </form>
+      </div>
     </div>
+
+    <div class="container">
+      <div id="doctorsName" class="row"></div>
+    </div>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h3 class="text-center">Doctors By Location</h3>
+        <form id="searchLocationForm">
+          <input type="text" class="form-control" id="searchLocalInput" placeholder="Enter a location (ex. Seattle, Washington)">
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="doctorsLocation" class="row"></div>
+    </div>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h3 class="text-center">Doctor for Treatment of Condition</h3>
+        <form id="searchCondition">
+          <input type="text" class="form-control" id="searchCond" placeholder="Enter a condition (ex. ear infection)">
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="doctorsCondition" class="row"></div>
+    </div>
+
+    <!-- <h1>Find a doctor near you!</h1>
+    <label for="location">Enter a location:</label>
+    <input id="location" type="text">
+    <button class="btn-success" id="doctorList">Find Local Doctors!</button>
+    <div class="errors"></div>
+    <div class="showName"></div>
+    <div class="showAddress"></div>
+    <div class="showWebsite"></div>
+    <div class="showAcceptingNewPatients"></div> -->
+
   </body>
 </html>
