@@ -25,12 +25,18 @@ var apiKey = require('./../.env').apiKey;
 //   });
 // }
 $(function() {
-  $('#doctorList').click(function() {
+  $('#practiceList').click(function() {
     let city = $('#location').val();
     $('#location').val("");
 
+    // $.ajax({
+    //   url:
+    // })
+
     $.ajax({
-      url: `https://api.betterdoctor.com/2016-03-01/doctors/?query=${city}&user_key=${apiKey}`,
+      // url: `https://api.betterdoctor.com/2016-03-01/doctors/?query=${city}&user_key=${apiKey}`,
+      // url: `https://api.betterdoctor.com/2016-03-01/practices?location=${city}&skip=2&limit=10&user_key=${apiKey}`,
+      url: `https://api.betterdoctor.com/2016-03-01/practices/?query=${city}&limit=10&user_key=${apiKey}`,
       type: 'GET',
       data: {
         format: 'json'
@@ -38,11 +44,13 @@ $(function() {
       success: function(response) {
 
       let name = $('.showName')
-    
+      
+
       for (let i = 0; i < response.data.length; i++) {
-        let doctorProfile = response.data[i].profile
-        console.log(doctorProfile.first_name)
-        name.append(doctorProfile.first_name)
+        console.log(response)
+        // let practiceLocation = response.practice[i].location
+        // console.log(practiceLocation)
+        // name.append(doctorProfile.first_name)
       }
 
 
