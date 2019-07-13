@@ -2,62 +2,41 @@
 <html>
   <head>
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
     <title>Doctor Information</title>
   </head>
   <body>
     <div class="container">
-
-
-    <!-- <div class="container">
       <div class="jumbotron">
-        <h3 class="text-center">Doctors By Name</h3>
-        <form id="searchNameForm">
-          <input type="text" class="form-control" id="searchNameInput" placeholder="Enter a doctor name">
-        </form>
+        <h3>Doctors in Seattle, Washington</h3>
+        <label for="location"></label>
+        <button class="btn-success" id="doctorList">Search</button>
       </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+          </tr>
+        </thead>
+        <tbody id="doctorResultsSeattle"></tbody>
+      </table>
     </div>
-
-    <div class="container">
-      <div id="doctorsName" class="row"></div>
-    </div>
-
-    <div class="container">
-      <div class="jumbotron">
-        <h3 class="text-center">Doctors By Location</h3>
-        <form id="searchLocationForm">
-          <input type="text" class="form-control" id="searchLocalInput" placeholder="Enter a location (ex. Seattle, Washington)">
-        </form>
-      </div>
-    </div>
-
-    <div class="container">
-      <div id="doctorsLocation" class="row"></div>
-    </div>
-
     <div class="container">
       <div class="jumbotron">
-        <h3 class="text-center">Doctor for Treatment of Condition</h3>
-        <form id="searchCondition">
-          <input type="text" class="form-control" id="searchCond" placeholder="Enter a condition (ex. ear infection)">
-        </form>
+        <h3>Find Doctors in Seattle by Ailment</h3>
+        <label for="location">Enter an ailment:</label>
+        <input id="location" type="text" placeholder="Ex. 'toothache'">
+        <button class="btn-success" id="doctorList">Search</button>
       </div>
-    </div>
-
-    <div class="container">
-      <div id="doctorsCondition" class="row"></div>
-    </div> -->
-
-    <h1>Find practice by location</h1>
-    <label for="location">Enter a location:</label>
-    <input id="location" type="text">
-    <button class="btn-success" id="doctorList">Find Local Practice!</button>
-    <div class="errors"></div>
-    <!-- <div class="showName"></div>
-    <div class="showAddress"></div>
-    <div class="showWebsite"></div>
-    <div class="showAcceptingNewPatients"></div> -->
-
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>More Information</th>
+          </tr>
+        </thead>
+        <tbody id="doctorResults"></tbody>
+      </table>
     </div>
   </body>
 </html>

@@ -7,61 +7,32 @@ var apiKey = require('./../.env').apiKey;
 
 
 
-//   $('#searchNameForm').on('submit', (event) => {
-//     let searchNameInput = $('#searchNameInput').val();
-//     getDoctorsName(searchNameInput);
-//     event.preventDefault();
-//   });
-//
-//
-// function getDoctorsName(searchNameInput){
-//   console.log(searchNameInput);
-//   axios.get(`https://api.betterdoctor.com/2016-03-01/doctors/?query=${city}&user_key=[apiKey]` + searchNameInput)
-//   .then((response) => {
-//     console.log();
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-// }
-$(function() {
-  $('#practiceList').click(function() {
-    let city = $('#location').val();
-    $('#location').val("");
-
-    // $.ajax({
-    //   url:
-    // })
-
-    $.ajax({
-      // url: `https://api.betterdoctor.com/2016-03-01/doctors/?query=${city}&user_key=${apiKey}`,
-      // url: `https://api.betterdoctor.com/2016-03-01/practices?location=${city}&skip=2&limit=10&user_key=${apiKey}`,
-      url: `https://api.betterdoctor.com/2016-03-01/practices/?query=${city}&limit=10&user_key=${apiKey}`,
-      type: 'GET',
-      data: {
-        format: 'json'
-      },
-      success: function(response) {
-
-      let name = $('.showName')
-      
-
-      for (let i = 0; i < response.data.length; i++) {
-        console.log(response)
-        // let practiceLocation = response.practice[i].location
-        // console.log(practiceLocation)
-        // name.append(doctorProfile.first_name)
-      }
-
-
-        // $('.showName').text(`Doctor Name: ${response.data.profile.first_name}` + " " + `${response.data.profile.last_name}%`);
-        // $('.showAddress').text(`Address: ${response.data.practices[0].visit_address_street}` + " " + `${response.data.practices[0].visit_address_street2}` + " " + `${response.data.practices[0].visit_address.zip}`);
-        // // $('.showWebsite').text(`Website: ${response.data.practice.website}.`);
-        // $('.showAcceptingNewPatients').text(`Accepting New Patients: ${response.data.practice[0].accepts_new_patients}`);
-      },
-      error: function() {
-        $('#errors').text("There was an error processing your request. Please try again.");
-      }
-    });
-  });
+// Function to extract the doctors in Seattle, WA using query within the API call
+let city = 'seattle, wa'
+$.get(`https://api.betterdoctor.com/2016-03-01/doctors/?query=${city}&user_key=${apiKey}`).then(function(response) {
+  console.log(response)
+  // let city = $('#location').val();
+  for (let i = 0; i < response.data.length; i++) {
+    let doctor = response.data[i]
+    let $results = $('#doctorResultsSeattle')
+    $results.append(`<tr><td>${doctor.profile.first_name} ${doctor.profile.last_name}</td></tr>`)
+  }
+  // $('#location').val("");
+}).fail(function(){
+  alert("Doctor information API call failure. Please try again.")
 });
+
+// Function to extract the doctors based on an ailment using query within the API call
+let ailment = 'toothache'
+$.get(`https://api.betterdoctor.com/2016-03-01/doctors/?query=${ailment}&user_key=${apiKey}`).then(function(response) {
+  console.log(response)
+  for (let i = 0; i < response.data.length; i++) {
+    let doctor = response.data[i]
+    let $results = $('#doctorResults')
+    $results.append(`<tr><td>${doctor.profile.first_name} ${doctor.profile.last_name}, ${doctor.profile.title}</td></tr>`)
+  }
+}).fail(function(){
+  alert("Doctor information API call failure. Please try again.")
+});
+
+//Function to extract the doctors practice information
