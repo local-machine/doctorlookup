@@ -7,36 +7,28 @@
   <body>
     <div class="container">
       <div class="jumbotron">
-        <h3>Doctors in Seattle, Washington</h3>
-        <label for="location"></label>
-        <button class="btn-success" id="doctorList">Search</button>
+        <form id="doctorForm">
+          <h3>Doctors in Seattle, Washington</h3>
+          <h6>Use the search field to find a doctor by either ailment you seek treatment for or by the name of the doctor you would like to find.</h6>
+          <label for="query">Enter ailment(eg. 'sore throat') or name(eg. 'Brown'):</label>
+          <input id="query" type="text" placeholder="'sore throat'">
+          <button class="btn-info">Search</button>
+        </form>
       </div>
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <th>Name</th>
-            <th>Phone Number</th>
-          </tr>
-        </thead>
-        <tbody id="doctorResultsSeattle"></tbody>
-      </table>
-    </div>
-    <div class="container">
-      <div class="jumbotron">
-        <h3>Find Doctors in Seattle by Ailment</h3>
-        <label for="location">Enter an ailment:</label>
-        <input id="location" type="text" placeholder="Ex. 'toothache'">
-        <button class="btn-success" id="doctorList">Search</button>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>More Information</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Accepting New Patients</th>
+            <th>Website</th>
           </tr>
         </thead>
         <tbody id="doctorResults"></tbody>
       </table>
+      <div id="noResults"></div>
+      <div id="callFail"></div>
     </div>
   </body>
 </html>

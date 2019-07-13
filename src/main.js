@@ -1,38 +1,50 @@
 import './styles.css';
 import $ from 'jquery';
-import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { Constructor-Name } from './backend-code';
-var apiKey = require('./../.env').apiKey;
+let apiKey = require('./../.env').apiKey;
 
 
+$('#doctorForm').submit(function(e){
+  e.preventDefault()
 
-// Function to extract the doctors in Seattle, WA using query within the API call
-let city = 'seattle, wa'
-$.get(`https://api.betterdoctor.com/2016-03-01/doctors/?query=${city}&user_key=${apiKey}`).then(function(response) {
-  console.log(response)
-  // let city = $('#location').val();
-  for (let i = 0; i < response.data.length; i++) {
-    let doctor = response.data[i]
-    let $results = $('#doctorResultsSeattle')
-    $results.append(`<tr><td>${doctor.profile.first_name} ${doctor.profile.last_name}</td></tr>`)
-  }
-  // $('#location').val("");
-}).fail(function(){
-  alert("Doctor information API call failure. Please try again.")
-});
+  let query = $('#query').val()
+  let location = '47.606,-122.332,100'
+  let $results = $('#doctorResults').empty()
+  let $noResults = $('#noResults').empty()
+  let $callFail = $('#callFail').empty()
 
-// Function to extract the doctors based on an ailment using query within the API call
-let ailment = 'toothache'
-$.get(`https://api.betterdoctor.com/2016-03-01/doctors/?query=${ailment}&user_key=${apiKey}`).then(function(response) {
-  console.log(response)
-  for (let i = 0; i < response.data.length; i++) {
-    let doctor = response.data[i]
-    let $results = $('#doctorResults')
-    $results.append(`<tr><td>${doctor.profile.first_name} ${doctor.profile.last_name}, ${doctor.profile.title}</td></tr>`)
-  }
-}).fail(function(){
-  alert("Doctor information API call failure. Please try again.")
-});
+  $.get(`https://api.betterdoctor.com/2016-03-01/doctors/?location=${location}&query=${query}&user_key=${apiKey}`).then(function(response) {
+    console.log(response)
+    if (!response.data.length) {
+      $noResults.text("I'm sorry, no doctors meet that criteria. Please try searching again with less specific criteria.")
+    } else {
+      for (let i = 0; i < response.data.length; i++) {
+        let doctor = response.data[i]
+        let practice = doctor.practices[0]
+        let $row = $('<tr></tr>').appendTo($results)
 
-//Function to extract the doctors practice information
+        let $name = $('<td></td>').appendTo($results)
+        let $address = $('<td></td>').appendTo($results)
+        let $phone = $('<td></td>').appendTo($results)
+        let $acceptsNewPatients = $('<td></td>').appendTo($results)
+        let $website = $('<td></td>').appendTo($results)
+
+        $name.text(`${doctor.profile.first_name} ${doctor.profile.last_name}, ${doctor.profile.title}`)
+
+        if(practice){
+          $address.text(`${practice.visit_address.street} ${practice.visit_address.city} ${practice.visit_address.zip}`)
+          $phone.text(practice.phones[0].number)
+          $acceptsNewPatients.text(practice.accepts_new_patients)
+          if (!practice.website) {
+            $website.text("Unavaiable")
+          } else {
+            $website.html(`<a href="${practice.website}" target="_blank">${practice.name}</a>`)
+          }
+        }
+      }
+    }
+  }).fail(function(){
+    $callFail.text("Doctor information API call failure. Please try again.")
+  });
+
+})
