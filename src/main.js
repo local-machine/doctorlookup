@@ -6,6 +6,7 @@ let apiKey = require('./../.env').apiKey;
 
 $('#doctorForm').submit(function(e){
   e.preventDefault()
+  $('.table').show()
 
   let query = $('#query').val()
   let location = '47.606,-122.332,100'
