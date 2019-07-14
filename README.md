@@ -6,7 +6,7 @@
 
 ## Description
 
-On this web site, the user can search for a doctor in the area.
+On this web site, the user can search for a doctor in the Seattle, WA area.
 
 ### Specs
 | Spec | Input | Output |
