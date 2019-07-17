@@ -1,8 +1,9 @@
 import './styles.css';
 import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
-let apiKey = require('./../.env').apiKey;
 
+
+import { APICaller } from './businesslogic.js'
 
 $('#doctorForm').submit(function(e){
   e.preventDefault()
@@ -14,8 +15,7 @@ $('#doctorForm').submit(function(e){
   let $noResults = $('#noResults').empty()
   let $callFail = $('#callFail').empty()
 
-  $.get(`https://api.betterdoctor.com/2016-03-01/doctors/?location=${location}&query=${query}&user_key=${apiKey}`).then(function(response) {
-    console.log(response)
+  APICaller(query, location).then(function(response) {
     if (!response.data.length) {
       $noResults.text("I'm sorry, no doctors meet that criteria. Please try searching again with less specific criteria.")
     } else {
@@ -48,4 +48,4 @@ $('#doctorForm').submit(function(e){
     $callFail.text("Doctor information API call failure. Please try again.")
   });
 
-})
+});
